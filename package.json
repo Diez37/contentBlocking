@@ -1,0 +1,24 @@
+{
+  "name": "requestblock",
+  "version": "0.0.0",
+  "description": "block unwanted requests",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Diez37/requestBlock.git"
+  },
+  "keywords": [
+    "request",
+    "block",
+    "yandex",
+    "market",
+    "supermegabest"
+  ],
+  "author": "Diez37",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Diez37/requestBlock/issues"
+  },
+  "homepage": "https://github.com/Diez37/requestBlock#readme"
+}
