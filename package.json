@@ -2,7 +2,7 @@
   "name": "requestblock",
   "version": "0.0.0",
   "description": "block unwanted requests",
-  "main": "index.js",
+  "main": "request-block.js",
   "scripts": {},
   "repository": {
     "type": "git",
