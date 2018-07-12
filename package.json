@@ -6,7 +6,7 @@
   "scripts": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Diez37/requestBlock.git"
+    "url": "git+https://github.com/Diez37/contentBlocking.git"
   },
   "keywords": [
     "request",
@@ -18,7 +18,7 @@
   "author": "Diez37",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Diez37/requestBlock/issues"
+    "url": "https://github.com/Diez37/contentBlocking/issues"
   },
-  "homepage": "https://github.com/Diez37/requestBlock#readme"
+  "homepage": "https://github.com/Diez37/contentBlocking#readme"
 }
