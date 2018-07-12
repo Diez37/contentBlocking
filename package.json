@@ -1,6 +1,6 @@
 {
-  "name": "content-block",
-  "version": "1.0",
+  "name": "c-block",
+  "version": "1.0.1",
   "description": "block unwanted requests",
   "main": "content-block.js",
   "scripts": {},
