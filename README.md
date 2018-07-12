@@ -1,4 +1,5 @@
 # Сontent Block
+[![Donations Badge](https://yourdonation.rocks/images/badge.svg)](https://yasobe.ru/na/donat_blokirovwik_kontenta)
 
     Скрипт блокировки, запросов и встраиваемого контента, от плагинов, 
     на подобие Яндекс.Маркет 
