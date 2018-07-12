@@ -1,8 +1,8 @@
 {
-  "name": "requestblock",
-  "version": "0.0.0",
+  "name": "content-block",
+  "version": "1.0",
   "description": "block unwanted requests",
-  "main": "request-block.js",
+  "main": "content-block.js",
   "scripts": {},
   "repository": {
     "type": "git",
