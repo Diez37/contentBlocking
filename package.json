@@ -1,6 +1,6 @@
 {
   "name": "c-block",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "block unwanted requests",
   "main": "content-block.js",
   "scripts": {},
@@ -13,7 +13,12 @@
     "block",
     "yandex",
     "market",
-    "supermegabest"
+    "supermegabest",
+    "яндекс",
+    "маркет",
+    "yandex market",
+    "яндекс маркет",
+    "яндекс маркет блокировка"
   ],
   "author": "Diez37",
   "license": "MIT",
