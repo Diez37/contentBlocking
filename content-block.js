@@ -35,8 +35,6 @@ export default class ContentBlock {
       'keywords': ContentBlock._regExpsGenerator(this.configure.keywords),
     };
 
-    console.log(this.regExps);
-
     /** @type {Object[]} */
     this.targetsStyle = [];
 
