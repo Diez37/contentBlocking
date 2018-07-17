@@ -42,6 +42,8 @@ export default class ContentBlock {
     this.XMLHttpRequestOpen = XMLHttpRequest.prototype.open;
 
     this.styleObserve = new MutationObserver((mutations) => {this._onMutations(mutations)});
+
+    this.xmlSerializer = new XMLSerializer();
   }
 
   /**
@@ -67,11 +69,13 @@ export default class ContentBlock {
    * @private
    */
   _onMutations(mutations) {
-    mutations.forEach(() => {
-      if (document.documentElement.style.marginTop !== '0px') {
-        document.documentElement.style.marginTop = this.configure.document.margin.top;
-      }
-    });
+    if (document.documentElement.style.marginTop !== this.configure.document.margin.top) {
+      document.documentElement.style.marginTop = this.configure.document.margin.top;
+    }
+
+    if (document.body.style.marginTop !== this.configure.document.margin.top) {
+      document.body.style.marginTop = this.configure.document.margin.top;
+    }
   }
 
   /**
@@ -88,6 +92,7 @@ export default class ContentBlock {
     document.addEventListener("DOMNodeInserted", (event) => {this._onDOMNodeInserted(event)}, false);
 
     this.styleObserve.observe(document.documentElement, { attributes : true, attributeFilter : ['style'] });
+    this.styleObserve.observe(document.body, { attributes : true, attributeFilter : ['style'] });
 
     return this;
   }
@@ -107,9 +112,15 @@ export default class ContentBlock {
   }
 
   /**
+   * @param {string} url
+   *
    * @return {Boolean}
    */
   isBlockUrl(url) {
+    if (url.length === 0) {
+      return false;
+    }
+
     for (let index in this.regExps.urls) {
       if (this.regExps.urls[index].test(url)) {
         return true;
@@ -126,7 +137,7 @@ export default class ContentBlock {
    */
   _onDOMNodeInserted(event) {
     if (event.target.tagName === 'SCRIPT') {
-      if (this.isBlockContent((new XMLSerializer(event.target).toString()))) {
+      if (this.isBlockContent(this.xmlSerializer.serializeToString(event.target)) || this.isBlockUrl(event.target.src)) {
         event.target.id = 'deleting';
 
         this.removeTarget([event.target.id]);
@@ -138,7 +149,7 @@ export default class ContentBlock {
     }
 
     if(event.relatedNode.nodeName === 'BODY' && event.target.tagName === 'DIV') {
-      if (this.isBlockContent((new XMLSerializer(event.target).toString()))) {
+      if (this.isBlockContent(this.xmlSerializer.serializeToString(event.target))) {
         this.removeTarget(event.target);
       }
     }
