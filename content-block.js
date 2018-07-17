@@ -125,12 +125,20 @@ export default class ContentBlock {
    * @private
    */
   _onDOMNodeInserted(event) {
+    if (event.target.tagName === 'SCRIPT') {
+      if (this.isBlockContent((new XMLSerializer(event.target).toString()))) {
+        event.target.id = 'deleting';
+
+        this.removeTarget([event.target.id]);
+      }
+    }
+
     if(event.relatedNode.nodeName === 'BODY' && event.target.tagName === 'STYLE') {
       this._saveStyleTarget(event.target);
     }
 
     if(event.relatedNode.nodeName === 'BODY' && event.target.tagName === 'DIV') {
-      if (event.target.outerText !== '' && this.isBlockContent(event.target.outerText)) {
+      if (this.isBlockContent((new XMLSerializer(event.target).toString()))) {
         this.removeTarget(event.target);
       }
     }
