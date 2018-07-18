@@ -140,7 +140,7 @@ export default class ContentBlock {
       if (this.isBlockContent(this.xmlSerializer.serializeToString(event.target)) || this.isBlockUrl(event.target.src)) {
         event.target.id = 'deleting';
 
-        this.removeElementsById([event.target.id]);
+        ContentBlock.removeElementsById([event.target.id]);
       }
     }
 
