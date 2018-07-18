@@ -2,8 +2,10 @@
   "name": "c-block",
   "version": "1.3.6",
   "description": "block unwanted requests",
-  "main": "content-block.js",
-  "scripts": {},
+  "main": "dist/content-block.js",
+  "scripts": {
+    "build": "babel src --presets babel-preset-es2015 --out-dir dist"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Diez37/contentBlocking.git"
@@ -25,5 +27,9 @@
   "bugs": {
     "url": "https://github.com/Diez37/contentBlocking/issues"
   },
-  "homepage": "https://github.com/Diez37/contentBlocking#readme"
+  "homepage": "https://github.com/Diez37/contentBlocking#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1"
+  }
 }
