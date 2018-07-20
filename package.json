@@ -1,6 +1,6 @@
 {
   "name": "c-block",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "block unwanted requests",
   "main": "dist/content-block.js",
   "scripts": {
