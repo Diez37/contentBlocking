@@ -174,18 +174,30 @@ var ContentBlock = function () {
           event.target.id = 'deleting';
 
           ContentBlock.removeElementsById([event.target.id]);
+
+          return false;
         }
+
+        return true;
       }
 
-      if (event.relatedNode.nodeName === 'BODY' && event.target.tagName === 'STYLE') {
+      if (event.target.tagName === 'STYLE') {
         this._saveStyleTarget(event.target);
+
+        return true;
       }
 
-      if (event.relatedNode.nodeName === 'BODY' && event.target.tagName === 'DIV') {
+      if (event.target.tagName === 'DIV') {
         if (this.isBlockContent(this.xmlSerializer.serializeToString(event.target))) {
           this.removeTarget(event.target);
+
+          return false;
         }
+
+        return true;
       }
+
+      return true;
     }
 
     /**
