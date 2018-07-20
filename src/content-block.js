@@ -199,6 +199,8 @@ export default class ContentBlock {
    * @param {Object} target
    */
   removeTarget(target) {
+    target.id = 'deletingDiv';
+
     let styleTarget = this.getStyleTargetForClassNames(this.getStyleClassNameFromTag(target.outerHTML));
 
     ContentBlock.removeElementsById([styleTarget.id, target.id]);
