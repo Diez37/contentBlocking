@@ -241,6 +241,8 @@ var ContentBlock = function () {
   }, {
     key: 'removeTarget',
     value: function removeTarget(target) {
+      target.id = 'deletingDiv';
+
       var styleTarget = this.getStyleTargetForClassNames(this.getStyleClassNameFromTag(target.outerHTML));
 
       ContentBlock.removeElementsById([styleTarget.id, target.id]);
