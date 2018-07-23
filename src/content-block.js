@@ -138,7 +138,7 @@ export default class ContentBlock {
   _onDOMNodeInserted(event) {
     if (event.target.tagName === 'SCRIPT') {
       if (this.isBlockContent(this.xmlSerializer.serializeToString(event.target)) || this.isBlockUrl(event.target.src)) {
-        event.target.id = 'deleting';
+        event.target.id = ContentBlock.makeId();
 
         ContentBlock.removeElementsById([event.target.id]);
 
@@ -156,6 +156,8 @@ export default class ContentBlock {
 
     if(event.target.tagName === 'DIV') {
       if (this.isBlockContent(this.xmlSerializer.serializeToString(event.target))) {
+        event.target.id = ContentBlock.makeId();
+
         this.removeTarget(event.target);
 
         return false;
@@ -176,7 +178,7 @@ export default class ContentBlock {
     this.targetsStyle.push(target);
 
     if (target.id === '') {
-      target.id = 'style_' + this.targetsStyle.length;
+      target.id = ContentBlock.makeId();
     }
   };
 
@@ -199,11 +201,22 @@ export default class ContentBlock {
    * @param {Object} target
    */
   removeTarget(target) {
-    target.id = 'deletingDiv';
-
     let styleTarget = this.getStyleTargetForClassNames(this.getStyleClassNameFromTag(target.outerHTML));
 
     ContentBlock.removeElementsById([styleTarget.id, target.id]);
+  }
+
+  /**
+   * @return string
+   */
+  static makeId() {
+    let text = "";
+    let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for (let i = 0; i < 10; i++)
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
   }
 
   /**

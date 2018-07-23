@@ -171,7 +171,7 @@ var ContentBlock = function () {
     value: function _onDOMNodeInserted(event) {
       if (event.target.tagName === 'SCRIPT') {
         if (this.isBlockContent(this.xmlSerializer.serializeToString(event.target)) || this.isBlockUrl(event.target.src)) {
-          event.target.id = 'deleting';
+          event.target.id = ContentBlock.makeId();
 
           ContentBlock.removeElementsById([event.target.id]);
 
@@ -189,6 +189,8 @@ var ContentBlock = function () {
 
       if (event.target.tagName === 'DIV') {
         if (this.isBlockContent(this.xmlSerializer.serializeToString(event.target))) {
+          event.target.id = ContentBlock.makeId();
+
           this.removeTarget(event.target);
 
           return false;
@@ -212,7 +214,7 @@ var ContentBlock = function () {
       this.targetsStyle.push(target);
 
       if (target.id === '') {
-        target.id = 'style_' + this.targetsStyle.length;
+        target.id = ContentBlock.makeId();
       }
     }
   }, {
@@ -241,21 +243,24 @@ var ContentBlock = function () {
   }, {
     key: 'removeTarget',
     value: function removeTarget(target) {
-      target.id = 'deletingDiv';
-
       var styleTarget = this.getStyleTargetForClassNames(this.getStyleClassNameFromTag(target.outerHTML));
 
       ContentBlock.removeElementsById([styleTarget.id, target.id]);
     }
 
     /**
-     * @param {string} content
-     *
-     * @return {string[]}
+     * @return string
      */
 
   }, {
     key: 'getStyleClassNameFromTag',
+
+
+    /**
+     * @param {string} content
+     *
+     * @return {string[]}
+     */
     value: function getStyleClassNameFromTag(content) {
       var res = [];
 
@@ -308,6 +313,16 @@ var ContentBlock = function () {
       }
 
       return res;
+    }
+  }, {
+    key: 'makeId',
+    value: function makeId() {
+      var text = "";
+      var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+      for (var i = 0; i < 10; i++) {
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+      }return text;
     }
   }, {
     key: 'removeElementsById',
